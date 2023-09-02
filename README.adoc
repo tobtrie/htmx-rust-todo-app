@@ -8,14 +8,14 @@
 This project try to evaluate the new library https://htmx.org/[HTMX]. For simplicity this projects implements a todo list. The data is not stored in a database. It is only stored inside the application state.
 
 == Project Todos
-* [ ] fix the _Mutex_ and _lifetime_ error in the `get_state` method
-** I guess the lifetime config does not solve the problem
+* [ ] fix the _Mutex_ and _lifetime_ error in the `get_state` method. I guess the lifetime config does not solve the problem
 * [ ] use `get_state` method for all methods that uses the app state
 ** This seems not so easy as expected due to some problems with the borrow checker
-* [ ] Only the toggled item is replaced
-* [ ] add a counter for done and not done tasks and update it with the click an the checkbox
+* [*] Only the toggled item is replaced
+* [*] add a counter for done and not done tasks and update it with the click an the checkbox
 * [ ] refactor `main.rs` file and move some code to other files
 * [ ] clear input after clicking on the add button
+** the snippet `"hx-on::after-request="this.reset()"` fixes the problem, but it is not compatible with maud.
 
 == How to start developing
 

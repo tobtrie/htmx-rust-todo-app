@@ -75,7 +75,7 @@ async fn index(data: web::Data<Mutex<AppState>>) -> Result<Markup, ApiError> {
             hx-post="/add"
             hx-target="#todo-list"
             hx-swap="beforeend" {
-                input name="prompt" class="flex-1 border rounded border-neutral-400 text-sm px-4 py-2 bg-black" {}
+                input name="prompt" class="flex-1 border rounded border-neutral-400 text-sm px-4 py-2 bg-black" ;
                 button class="rounded bg-blue-500 px-4 py-2" {"Add"}
             }
             div ."text-neutral-400" hx-get="/statistic" hx-trigger="changedTodos from:body"{
@@ -108,7 +108,7 @@ async fn add(data: web::Data<Mutex<AppState>>, form: web::Form<FormData>) -> imp
     };
     let id: u128 = state.last_index;
     let todo = Todo {
-        id: id,
+        id,
         name: form.prompt.clone(),
         done: false,
     };
@@ -140,7 +140,7 @@ async fn toggle_done(req: HttpRequest, data: web::Data<Mutex<AppState>>) -> impl
         .iter_mut()
         .filter(|todo| todo.id == id)
         .collect();
-    if todo.len() > 0 {
+    if !todo.is_empty() {
         let item = todo.get_mut(0).unwrap();
         item.done = !item.done;
         return Ok(HttpResponse::Ok()
